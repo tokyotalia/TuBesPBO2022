@@ -4,10 +4,14 @@
  */
 package Main;
 
+import View.LoginScreen;
+
 /**
  *
  * @author Mena
  */
 public class Main {
-    
+    public static void main(String[] args) {
+        new LoginScreen();
+    }
 }
