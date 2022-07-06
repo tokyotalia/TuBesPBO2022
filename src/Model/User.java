@@ -1,10 +1,7 @@
 
 package Model;
 
-import Controller.AdminManager;
-import Controller.CustomerManager;
 import Controller.DatabaseControl;
-import Controller.DriverManager;
 import Controller.UserManager;
 import java.util.ArrayList;
 
