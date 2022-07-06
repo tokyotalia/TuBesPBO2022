@@ -8,11 +8,7 @@ public class Admin extends User{
         
     }
 
-    public Admin(int id_admin, String alamat) {
-        this.id_admin = id_admin;
-    }
-
-    public Admin(int id_admin, String alamat, int id_User, String nama, String username, String password, String noHp, String email, String tanggallahir, int tipe) {
+    public Admin(int id_admin, int id_User, String nama, String username, String password, int tipe) {
         super(id_User, nama, username, password, tipe);
         this.id_admin = id_admin;
     }

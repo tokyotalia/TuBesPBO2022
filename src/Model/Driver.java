@@ -7,13 +7,13 @@ public class Driver extends User{
     private String platnomor;
     private int pendapatan;
     private int saldoUp;
-    private String status;
+    private StatusDriver status;
     
 
     public Driver() {
     }
 
-    public Driver(int id_driver, String jeniskendaraan, String platnomor, int pendapatan, int saldoOvo, String status, int id_User, String nama, String username, String password, String noHp, String email, String tanggallahir, int tipe) {
+    public Driver(int id_driver, String jeniskendaraan, String platnomor, int pendapatan, int saldoUp, StatusDriver status, int id_User, String nama, String username, String password, int tipe) {
         super(id_User, nama, username, password, tipe);
         this.id_driver = id_driver;
         this.jeniskendaraan = jeniskendaraan;
@@ -63,13 +63,12 @@ public class Driver extends User{
         this.saldoUp = saldoUp;
     }
 
-    public String getStatus() {
+    public StatusDriver getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusDriver status) {
         this.status = status;
     }
-
-    
+  
 }

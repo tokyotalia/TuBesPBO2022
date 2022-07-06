@@ -9,7 +9,7 @@ public class Customers extends User{
     public Customers(){
     }
 
-    public Customers(int id_customer, int Saldoovo, String alamat, int id_User, String nama, String username, String password, String noHp, String email, String tanggallahir, int tipe) {
+    public Customers(int id_customer, int SaldoUp, String alamat, int id_User, String nama, String username, String password, int tipe) {
         super(id_User, nama, username, password, tipe);
         this.id_customer = id_customer;
         this.SaldoUp = SaldoUp;
