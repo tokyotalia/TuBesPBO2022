@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class DatabaseHandler {
     public Connection con;
     private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/tugasbesar?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private String url = "jdbc:mysql://localhost/db_up_jek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String username = "root";
     private String password = "";
     
