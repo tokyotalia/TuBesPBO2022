@@ -34,6 +34,81 @@ public class DatabaseControl {
         }
         return listUser;
     }
+     
+    public static ArrayList<Customers> getAllCustomer(){
+        conn.connect();
+        String query = "SELECT * FROM customers";
+        ArrayList<Customers> listCustomer = new ArrayList<>();
+        
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Customers customers = new Customers();
+                User user = new User();
+                DatabaseControl ctrl = new DatabaseControl();
+                ArrayList<User> listUser = new ArrayList<>();
+                listUser = ctrl.getAllUser();
+                
+                for(int i = 0; i < listUser.size(); i++){
+                    if(listUser.get(i).getId_User() == (rs.getInt("id_user"))){
+                        user = listUser.get(i);
+                    }
+                }
+                
+                customers.setId_customer(rs.getInt("id_Customers"));
+                customers.setAlamat(rs.getString("alamat"));
+                customers.setSaldoUp(rs.getInt("saldo"));
+                
+                customers.setId_User(user.getId_User());
+                customers.setNama(user.getNama());
+                customers.setUsername(user.getUsername());
+                customers.setPassword(user.getPassword());
+                customers.setTipe(user.getTipe());
+                
+                listCustomer.add(customers);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listCustomer;
+    }
+    
+    public static ArrayList<Admin> getAllAdmin(){
+        conn.connect();
+        String query = "SELECT * FROM admin";
+        ArrayList<Admin> listAdmin = new ArrayList<>();
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Admin admin = new Admin();
+                User user = new User();
+                DatabaseControl ctrl = new DatabaseControl();
+                ArrayList<User> listUser = new ArrayList<>();
+                listUser = ctrl.getAllUser();
+                
+                for(int i = 0; i < listUser.size(); i++){
+                    if(listUser.get(i).getId_User() == rs.getInt("id_user")){
+                        user = listUser.get(i);
+                    }
+                }
+                
+                admin.setId_admin(rs.getInt("id_Admin"));
+                
+                admin.setId_User(user.getId_User());
+                admin.setNama(user.getNama());
+                admin.setUsername(user.getUsername());
+                admin.setPassword(user.getPassword());
+                admin.setTipe(user.getTipe());
+                
+                listAdmin.add(admin);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listAdmin;
+    }
     
     public static ArrayList<Driver>getAllDriver(){
         conn.connect();
