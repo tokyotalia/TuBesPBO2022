@@ -29,7 +29,7 @@ public class CustomerScreen extends JFrame implements ActionListener{
         frame.setLocationRelativeTo(null);
         
         labeljudul = new JLabel("Silahkan Pilih ");
-        labeljudul.setBounds(160, 10, 200, 30);
+        labeljudul.setBounds(150, 10, 200, 30);
         
         gojekbutton = new JButton("GoJek");
         gojekbutton.setBounds(100, 50, 200, 30);
@@ -79,7 +79,7 @@ public class CustomerScreen extends JFrame implements ActionListener{
                 break;
             case"UserProfile":
                 frame.setVisible(false);
-                new MenuProfile();
+                new ProfileScreen();
                 break;
             case"History":
                 frame.setVisible(false);

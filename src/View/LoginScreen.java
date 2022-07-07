@@ -34,7 +34,7 @@ import javax.swing.WindowConstants;
 public class LoginScreen  extends JFrame implements ActionListener{
     private JFrame Login;
     private JLabel labelusername,labelpassword,labeljudul;
-    private JTextField fieldusername,fieldemail;
+    private JTextField fieldusername;
     private JPasswordField fieldpassword;
     private JButton confirmbutton, registerbutton;
     
@@ -88,7 +88,7 @@ public class LoginScreen  extends JFrame implements ActionListener{
                 String password = new String(fieldpassword.getPassword());
                 User user = new User();
                 if(username.equals("") || password.equals("")){
-                    JOptionPane.showMessageDialog(null, "Silahkan isikan email dan password anda", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Silahkan isikan username dan password anda", "Error", JOptionPane.ERROR_MESSAGE);
                 }else if(user.cekLogin(username, password)){
                     DatabaseControl ctrl = new DatabaseControl();
                     if(UserManager.getInstance().getUser().getTipe() == 1){
@@ -129,6 +129,7 @@ public class LoginScreen  extends JFrame implements ActionListener{
             case "Register":
                 Login.setVisible(false);
                 new RegisterScreen();
+            break;
         }
     }
 }

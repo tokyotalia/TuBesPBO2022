@@ -8,7 +8,7 @@ import Controller.PesananManager;
 import Controller.PesananOjekManager;
 import Model.Driver;
 import Model.StatusDriver;
-//import View.Customer.CustomerScreen;
+import View.Customer.CustomerScreen;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -178,7 +178,7 @@ public class PembayaranGojek implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Saldo Up-Pay Tidak Cukup!!, Silahkan memakai Tunai atau Top Up terlebih dahulu", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 framepembayarangojek.setVisible(false);
-//                new CustomerScreen();
+                new CustomerScreen();
                 
             break;
             case "Back":
@@ -187,7 +187,7 @@ public class PembayaranGojek implements ActionListener{
             break;
             case "Cancel":
                 framepembayarangojek.setVisible(false);
-//                new CustomerScreen();
+                new CustomerScreen();
         }
     }
     

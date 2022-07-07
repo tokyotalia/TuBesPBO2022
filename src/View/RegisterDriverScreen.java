@@ -5,12 +5,14 @@
  */
 package View;
 
+import Controller.DatabaseHandler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -27,7 +29,7 @@ public class RegisterDriverScreen extends JFrame implements ActionListener{
     private JTextField fieldnama, fieldusername, fieldplatnomor;
     private JPasswordField fieldpassword;
     private JButton RegisterDriverButton, RegisterDriverBackButton;
-    
+
     public RegisterDriverScreen() {
         RegisterDriver = new JFrame("Register Customer");
         RegisterDriver.setSize(400, 450);
@@ -106,8 +108,23 @@ public class RegisterDriverScreen extends JFrame implements ActionListener{
         String command = ae.getActionCommand();
         switch(command){
             case "Confirm":
-                RegisterDriver.setVisible(false);
-                new LoginScreen();
+                String nama = fieldnama.getText();
+                String username = fieldusername.getText();
+                String password = fieldpassword.getText();
+                String platnomor = fieldplatnomor.getText();
+                String Jeniskendaraan = "Motor";
+                if (RBMobil.isShowing()){
+                    Jeniskendaraan = "Mobil";
+                }
+                if (nama.equals("") || username.equals("") || password.equals("") || platnomor.equals("")){
+                    JOptionPane.showMessageDialog(null, "Silahkan diisi dengan lengkap ", "Error", JOptionPane.ERROR_MESSAGE);
+                
+                }else {
+                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Error", JOptionPane.ERROR_MESSAGE);
+                }   
+                
+//                RegisterDriver.setVisible(false);
+//                new LoginScreen();
             break;
             case "Back":
                 RegisterDriver.setVisible(false);

@@ -100,7 +100,7 @@ public class UpFood implements ActionListener{
             break;
             case"Back":
                 frame.setVisible(false);
-//                new CustomerScreen();
+                new CustomerScreen();
                 break;           
             default:
                 break;

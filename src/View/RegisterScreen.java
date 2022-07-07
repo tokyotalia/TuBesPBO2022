@@ -81,4 +81,8 @@ public class RegisterScreen extends JFrame implements ActionListener{
                 new LoginScreen();
         }
     }
+    public static void main(String[] args) {
+        new RegisterScreen();
+    }
+    
 }

@@ -89,8 +89,8 @@ public class PembayaranFoodScreen implements ActionListener{
         labelmetodepembayaran = new JLabel("Pilih Metode Pembayarannya: ");
         labelmetodepembayaran.setBounds(20,y+80,170,50);
         
-//        labelisinamapemesan = new JLabel(PesananManager.getInstance().getPesanan().getCustomer().getNama());
-//        labelisinamapemesan.setBounds(230,80,300,50);    
+        labelisinamapemesan = new JLabel(PesananManager.getInstance().getPesanan().getCustomer().getNama());
+        labelisinamapemesan.setBounds(230,80,300,50);    
         
         labelisialamattujuan = new JLabel(PesananFoodManager.getInstance().getPesananfood().getAlamat_Pengantaran());
         labelisialamattujuan.setBounds(230,160,300,50);
@@ -140,7 +140,7 @@ public class PembayaranFoodScreen implements ActionListener{
         framepembayarangojek.add(labeljarak);
         framepembayarangojek.add(labeltotalharga);
         framepembayarangojek.add(labelmetodepembayaran);
-//        framepembayarangojek.add(labelisinamapemesan);
+        framepembayarangojek.add(labelisinamapemesan);
         framepembayarangojek.add(labelisialamattujuan);
         framepembayarangojek.add(labelisijarak);
         framepembayarangojek.add(labelisitotalharga);
@@ -202,7 +202,7 @@ public class PembayaranFoodScreen implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Saldo Up-Pay Tidak Cukup!!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 framepembayarangojek.setVisible(false);
-//                new CustomerScreen();
+                new CustomerScreen();
             break;
             case "Back":
                 framepembayarangojek.setVisible(false);
@@ -210,7 +210,7 @@ public class PembayaranFoodScreen implements ActionListener{
             break;
             case "Cancel":
                 framepembayarangojek.setVisible(false);
-//                new CustomerScreen();
+                new CustomerScreen();
         }
     }
 }

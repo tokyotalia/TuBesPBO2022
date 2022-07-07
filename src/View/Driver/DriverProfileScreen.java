@@ -18,7 +18,7 @@ import javax.swing.WindowConstants;
  *
  * @author Mena
  */
-public class DriverProfileScreen extends JFrame implements ActionListener {
+public class DriverProfileScreen extends JFrame implements ActionListener{
     private JFrame frame;
     private JLabel labeljudul,labelnamadriver,labeljeniskendaraan,labelplatno,labelsaldo,labelpendapatan,
             labelisinama,labelisijeniskendaraan,labelisiplatno,labelisisaldo,labelisipendapatan,labeltariksaldo;
@@ -37,7 +37,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener {
         labelnamadriver = new JLabel("Nama Driver ");
         labelnamadriver.setBounds(45,50,100,30);
         
-        labelisinama = new JLabel(DriverManager.getInstance().getDrivers().getNamaDriver());
+        labelisinama = new JLabel(DriverManager.getInstance().getDrivers().getNama());
         labelisinama.setBounds(150,50,100,30);
         
         labeljeniskendaraan = new JLabel("Kendaraan");
@@ -111,11 +111,11 @@ public class DriverProfileScreen extends JFrame implements ActionListener {
                 int jawab = JOptionPane.showConfirmDialog(null, "Yakin ingin menarik Rp. " + fieldnominal.getText() + ",-?");
                 switch(jawab){
                     case JOptionPane.YES_OPTION:
-                        if(Integer.parseInt(fieldnominal.getText()) < DriverManager.getInstance().getDrivers().getSaldoOvo()){
-                            DriverManager.getInstance().getDrivers().setSaldoOvo(DriverManager.getInstance().getDrivers().getSaldoOvo() - Integer.parseInt(fieldnominal.getText()));
+                        if(Integer.parseInt(fieldnominal.getText()) < DriverManager.getInstance().getDrivers().getSaldoUp()){
+                            DriverManager.getInstance().getDrivers().setSaldoUp(DriverManager.getInstance().getDrivers().getSaldoUp() - Integer.parseInt(fieldnominal.getText()));
                             JOptionPane.showMessageDialog(null, "Penarikan Berhasil!!", "Information", JOptionPane.INFORMATION_MESSAGE);
                         }else{
-                            JOptionPane.showMessageDialog(null, "Saldo Ovo Kurang!!", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Saldo Up-Pay Kurang!!", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         
                         break;
@@ -134,9 +134,10 @@ public class DriverProfileScreen extends JFrame implements ActionListener {
                 break;
             case"LihatRiwayat":
                 frame.setVisible(false);
-                new RiwayatDriverScreen();
+                new DriverHistoryScreen();
             default:
                 break;
         }
     }
+    
 }
