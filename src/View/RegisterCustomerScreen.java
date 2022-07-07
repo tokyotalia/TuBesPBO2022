@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -87,8 +88,20 @@ public class RegisterCustomerScreen extends JFrame implements ActionListener{
         String command = ae.getActionCommand();
         switch(command){
             case "Confirm":
-                RegisterCustomer.setVisible(false);
-                new LoginScreen();
+                String nama = fieldnama.getText();
+                String username = fieldusername.getText();
+                String password = fieldpassword.getText();
+                String alamat = fieldalamat.getText();
+                
+                if (nama.equals("") || username.equals("") || password.equals("") || alamat.equals("")){
+                    JOptionPane.showMessageDialog(null, "Silahkan diisi dengan lengkap ", "Error", JOptionPane.ERROR_MESSAGE);
+                
+                }else {
+                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Error", JOptionPane.ERROR_MESSAGE);
+                }   
+                
+//                RegisterCustomer.setVisible(false);
+//                new LoginScreen();
             break;
             case "Back":
                 RegisterCustomer.setVisible(false);
