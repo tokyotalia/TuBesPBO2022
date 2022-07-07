@@ -20,10 +20,10 @@ import javax.swing.WindowConstants;
 public class AdminScreen extends JFrame implements ActionListener{
     private JFrame frame;
     private JLabel labeljudul;
-    private JButton datadriverbutton,logoutbutton;
+    private JButton datadriverbutton, hapusDriverButton, logoutbutton;
 
     public AdminScreen() {
-        frame = new JFrame("Login");
+        frame = new JFrame("Admin");
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -31,16 +31,31 @@ public class AdminScreen extends JFrame implements ActionListener{
         labeljudul = new JLabel("Silahkan Pilih ");
         labeljudul.setBounds(160, 10, 200, 30);
         
-        datadriverbutton = new JButton("Lihat Riwayat Driver");
+        datadriverbutton = new JButton("Lihat Driver");
         datadriverbutton.setBounds(100, 50, 200, 30);
-        datadriverbutton.addActionListener(this);
+        datadriverbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LihatDriver();
+            }
+        });
+        
+        hapusDriverButton = new JButton("Hapus Driver");
+        hapusDriverButton.setBounds(100, 100, 200, 30);
+        hapusDriverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HapusDriver();
+            }
+        });
         
         logoutbutton = new JButton("Logout");
-        logoutbutton.setBounds(100, 100, 200, 30);
+        logoutbutton.setBounds(100, 150, 200, 30);
         logoutbutton.addActionListener(this);
         
         frame.add(labeljudul);
         frame.add(datadriverbutton);
+        frame.add(hapusDriverButton);
         frame.add(logoutbutton);
         frame.setLayout(null);
         frame.setVisible(true);

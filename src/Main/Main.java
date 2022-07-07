@@ -4,6 +4,7 @@
  */
 package Main;
 
+//import View.LoginScreen;
 import View.LoginScreen;
 
 /**
@@ -12,6 +13,5 @@ import View.LoginScreen;
  */
 public class Main {
     public static void main(String[] args) {
-        new LoginScreen();
-    }
+        new LoginScreen();    }
 }
