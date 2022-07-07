@@ -79,6 +79,7 @@ public class RegisterScreen extends JFrame implements ActionListener{
             case "Back":
                 Register.setVisible(false);
                 new LoginScreen();
+            break;
         }
     }
     public static void main(String[] args) {

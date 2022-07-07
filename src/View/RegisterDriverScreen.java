@@ -31,7 +31,7 @@ public class RegisterDriverScreen extends JFrame implements ActionListener{
     private JButton RegisterDriverButton, RegisterDriverBackButton;
 
     public RegisterDriverScreen() {
-        RegisterDriver = new JFrame("Register Customer");
+        RegisterDriver = new JFrame("Register Driver");
         RegisterDriver.setSize(400, 450);
         RegisterDriver.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         RegisterDriver.setLocationRelativeTo(null);
