@@ -6,7 +6,7 @@ import Controller.PesananManager;
 import Controller.PesananOjekManager;
 import Model.Pesanan;
 import Model.PesananOjek;
-//import View.Customer.CustomerScreen;
+import View.Customer.CustomerScreen;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,7 +101,7 @@ public class UpJek implements ActionListener{
                 new PembayaranGojek();
             break;
             case "Back":
-//                new CustomerScreen();
+                new CustomerScreen();
             break;
             case "Pilih Lokasi Dengan GPS":
                 fieldalamatjemput.setText(CustomerManager.getInstance().getCustomer().getAlamat());

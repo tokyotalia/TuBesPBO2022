@@ -59,10 +59,8 @@ public class OrderFoodScreen implements ActionListener{
             if(listFood.get(i).getRestaurant().getId_restaurant() == restaurant.getId_restaurant()){
                 labelMakanan[counter] = new JLabel(listFood.get(i).getNamamakanan());
                 tfMakanan[counter] = new JTextField();
-                if(y < 350){
-                    y += 50;
-                    x1 += 105;
-                    x2 += 105;
+                if(y < 300){
+                    y += 40;
                 }
                 labelMakanan[counter].setBounds(x1, y, 100, 30);
                 tfMakanan[counter].setBounds(x2, y, 50, 30);
