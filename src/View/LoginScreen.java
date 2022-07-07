@@ -4,11 +4,25 @@
  */
 package View;
 
+import Controller.AdminManager;
+import Controller.CustomerManager;
+import Controller.DatabaseControl;
+import Controller.DriverManager;
+import Controller.UserManager;
+import Model.Admin;
+import Model.Customers;
+import Model.Driver;
+import Model.User;
+import View.Admin.AdminScreen;
+import View.Customer.CustomerScreen;
+import View.Driver.DriverScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -70,7 +84,47 @@ public class LoginScreen  extends JFrame implements ActionListener{
         String command = ae.getActionCommand();
         switch(command){
             case "Confirm":
-                Login.setVisible(false);
+                String username = fieldusername.getText();
+                String password = new String(fieldpassword.getPassword());
+                User user = new User();
+                if(username.equals("") || password.equals("")){
+                    JOptionPane.showMessageDialog(null, "Silahkan isikan email dan password anda", "Error", JOptionPane.ERROR_MESSAGE);
+                }else if(user.cekLogin(username, password)){
+                    DatabaseControl ctrl = new DatabaseControl();
+                    if(UserManager.getInstance().getUser().getTipe() == 1){
+                        ArrayList<Admin> listAdmin = new ArrayList<>();
+                        listAdmin = ctrl.getAllAdmin();
+                        for(int i = 0; i < listAdmin.size(); i++){
+                            if(listAdmin.get(i).getId_User() == UserManager.getInstance().getUser().getId_User()){
+                                AdminManager.getInstance().setAdmin(listAdmin.get(i));
+                            }
+                        }
+                        Login.setVisible(false);
+                        new AdminScreen();
+                    }else if(UserManager.getInstance().getUser().getTipe() == 2){
+                        ArrayList<Customers> listCustomer = new ArrayList<>();
+                        listCustomer = ctrl.getAllCustomer();
+                        for(int i = 0; i < listCustomer.size(); i++){
+                            if(listCustomer.get(i).getId_User() == UserManager.getInstance().getUser().getId_User()){
+                                CustomerManager.getInstance().setCustomer(listCustomer.get(i));
+                            }
+                        }
+                        Login.setVisible(false);
+                        new CustomerScreen();
+                    }else if(UserManager.getInstance().getUser().getTipe() == 3){
+                        ArrayList<Driver> listDriver = new ArrayList<>();
+                        listDriver = ctrl.getAllDriver();
+                        for(int i = 0; i < listDriver.size(); i++){
+                            if(listDriver.get(i).getId_User() == UserManager.getInstance().getUser().getId_User()){
+                                DriverManager.getInstance().setDrivers(listDriver.get(i));
+                            }
+                        }
+                        Login.setVisible(false);
+                        new DriverScreen();
+                    }
+                }else if(!user.cekLogin(username, password)){
+                    JOptionPane.showMessageDialog(null, "Username atau Password Salah!!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             break;
             case "Register":
                 Login.setVisible(false);
