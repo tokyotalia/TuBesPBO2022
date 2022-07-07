@@ -136,7 +136,7 @@ public class PembayaranGojek implements ActionListener{
                     PesananManager.getInstance().getPesanan().setMetodepembayaran((String) cBmetodepembayaran.getItemAt(cBmetodepembayaran.getSelectedIndex()));
                     PesananManager.getInstance().getPesanan().setTotalharga(totalharga);
                     Date date = new Date();
-                    SimpleDateFormat s = new SimpleDateFormat("dd-mm-yyyy");
+                    SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
                     String tanggal = s.format(date);
                     PesananManager.getInstance().getPesanan().setTanggalpemesanan(tanggal);
                     DatabaseControl ctrl = new DatabaseControl();

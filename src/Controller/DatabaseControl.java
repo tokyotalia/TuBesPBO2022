@@ -22,11 +22,11 @@ public class DatabaseControl {
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
                 User user = new User();
-                user.setId_User(rs.getInt("id"));
-                user.setNama(rs.getString("nama"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setTipe(rs.getInt("tipe"));
+                user.setId_User(rs.getInt("ID_User"));
+                user.setNama(rs.getString("Nama"));
+                user.setUsername(rs.getString("Username"));
+                user.setPassword(rs.getString("Password"));
+                user.setTipe(rs.getInt("Tipe"));
                 listUser.add(user);
             }
         }catch(SQLException e){
@@ -44,7 +44,7 @@ public class DatabaseControl {
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
                 Driver driver = new Driver();
-                User user = new Driver();
+                User user = new User();
                 DatabaseControl ctrl = new DatabaseControl();
                 ArrayList<User> listUser = new ArrayList<>();
                 listUser = ctrl.getAllUser();
@@ -78,7 +78,7 @@ public class DatabaseControl {
     
     public static Customers getCustomerByIdCustomer(int idCustomer){
         conn.connect();
-        String query = "SELECT * FROM customer WHERE ID_Customers = '" + idCustomer + "'";
+        String query = "SELECT * FROM customer WHERE ID_Customer = '" + idCustomer + "'";
         Customers customers = new Customers();
         try{
             Statement stmt = conn.con.createStatement();
@@ -151,7 +151,7 @@ public class DatabaseControl {
     
     public static boolean updateStatusDriver(String status, int idDriver){
         conn.connect();
-        String query = "UPDATE driver SET status = '" + status + "' WHERE id_Driver = " + idDriver;
+        String query = "UPDATE driver SET Status = '" + status + "' WHERE ID_Driver = " + idDriver;
         try{
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -164,15 +164,15 @@ public class DatabaseControl {
     
     public static boolean insertNewPesanan(Pesanan pesanan){
         conn.connect();
-        String query = "INSERT INTO pesanan (ID,ID_Customer,ID_Driver,Tanggal_Pemesanan,Metode_Pembayaran,Total_Harga,) values (?,?,?,?,?,?)";
+        String query = "INSERT INTO pesanan (ID_Pesanan,ID_Customer,ID_Driver,Total_Harga,Tanggal_Pemesanan,Metode_Pembayaran) values (?,?,?,?,?,?)";
         try{
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
-            stmt.setInt(2, pesanan.getCustomer().getId_customer());
+            stmt.setInt(2, 2);
             stmt.setInt(3, pesanan.getDriver().getId_driver());
-            stmt.setString(4, pesanan.getTanggalpemesanan());
-            stmt.setString(5, pesanan.getMetodepembayaran());
-            stmt.setInt(6, pesanan.getTotalharga());
+            stmt.setInt(4, pesanan.getTotalharga());
+            stmt.setString(5, pesanan.getTanggalpemesanan());
+            stmt.setString(6, pesanan.getMetodepembayaran());   
             
             stmt.executeUpdate();
             return true;
