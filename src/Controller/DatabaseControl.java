@@ -260,7 +260,7 @@ public class DatabaseControl {
                 listRestaurant = ctrl.getAllRestaurant();
                 Restaurant restaurant = new Restaurant();
                 for(int i = 0; i < listRestaurant.size(); i++){
-                    if(listRestaurant.get(i).getId_restaurant() == rs.getInt("ID_Restoran")){
+                    if(listRestaurant.get(i).getId_restaurant() == rs.getInt("ID_Restaurant")){
                         restaurant = listRestaurant.get(i);
                     }
                 }

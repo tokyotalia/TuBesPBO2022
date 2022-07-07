@@ -6,7 +6,7 @@ import Controller.DatabaseControl;
 import Controller.PesananFoodManager;
 import Controller.PesananManager;
 import Controller.PesananOjekManager;
-import Model.DetailPesanan;
+import Model.Keranjang;
 import Model.Driver;
 import Model.Pesanan;
 import Model.PesananFood;
@@ -29,16 +29,16 @@ import javax.swing.WindowConstants;
 
 public class PembayaranFoodScreen implements ActionListener{
     private JFrame framepembayarangojek = new JFrame();
-    private JLabel labelnamapemesan, labelalamatjemput, labelalamattujuan,labeljarak, labeltotalharga,
-            labelisinamapemesan, labelisialamatjemput, labelisialamattujuan, labelisijarak, labelisitotalharga,
+    private JLabel labelnamapemesan, labelalamattujuan,labeljarak, labeltotalharga,
+            labelisinamapemesan, labelisialamattujuan, labelisijarak, labelisitotalharga,
             labelmetodepembayaran , labeljudul, labelPesanan, labelTotalHargaMakanan, labelIsiTotalHargaMakanan;
     private JLabel[] labelIsiPesanan, labelQuantity;
     private JComboBox cBmetodepembayaran;
     private JButton buttonBack, buttonSubmit, buttonCancel;
     private int jarak;  
     private int totalharga, totalHargaPesanan;
-    private ArrayList<DetailPesanan> listDetailPesanan2 = new ArrayList<>();
-    public PembayaranFoodScreen(ArrayList<DetailPesanan> listDetailPesanan){
+    private ArrayList<Keranjang> listDetailPesanan2 = new ArrayList<>();
+    public PembayaranFoodScreen(ArrayList<Keranjang> listDetailPesanan){
         listDetailPesanan2 = listDetailPesanan;        
         framepembayarangojek.setSize(900,700);
         framepembayarangojek.setLocationRelativeTo(null);
@@ -51,10 +51,7 @@ public class PembayaranFoodScreen implements ActionListener{
         
         labelnamapemesan = new JLabel("Nama Pemesan: ");
         labelnamapemesan.setBounds(20,80,100,50);
-                
-        labelalamatjemput = new JLabel("Alamat Penjemputan: ");
-        labelalamatjemput.setBounds(20,120,150,50);
-                
+                               
         labelalamattujuan= new JLabel("Alamat Tujuan: ");        
         labelalamattujuan.setBounds(20,160,100,50);
         
@@ -92,8 +89,8 @@ public class PembayaranFoodScreen implements ActionListener{
         labelmetodepembayaran = new JLabel("Pilih Metode Pembayarannya: ");
         labelmetodepembayaran.setBounds(20,y+80,170,50);
         
-        labelisinamapemesan = new JLabel(PesananManager.getInstance().getPesanan().getCustomer().getNama());
-        labelisinamapemesan.setBounds(230,80,300,50);    
+//        labelisinamapemesan = new JLabel(PesananManager.getInstance().getPesanan().getCustomer().getNama());
+//        labelisinamapemesan.setBounds(230,80,300,50);    
         
         labelisialamattujuan = new JLabel(PesananFoodManager.getInstance().getPesananfood().getAlamat_Pengantaran());
         labelisialamattujuan.setBounds(230,160,300,50);
@@ -139,13 +136,11 @@ public class PembayaranFoodScreen implements ActionListener{
         framepembayarangojek.add(labelPesanan);
         framepembayarangojek.add(labeljudul);
         framepembayarangojek.add(labelnamapemesan);
-        framepembayarangojek.add(labelalamatjemput);
         framepembayarangojek.add(labelalamattujuan);
         framepembayarangojek.add(labeljarak);
         framepembayarangojek.add(labeltotalharga);
         framepembayarangojek.add(labelmetodepembayaran);
-        framepembayarangojek.add(labelisinamapemesan);
-        framepembayarangojek.add(labelisialamatjemput);
+//        framepembayarangojek.add(labelisinamapemesan);
         framepembayarangojek.add(labelisialamattujuan);
         framepembayarangojek.add(labelisijarak);
         framepembayarangojek.add(labelisitotalharga);
@@ -166,15 +161,11 @@ public class PembayaranFoodScreen implements ActionListener{
                     PesananManager.getInstance().getPesanan().setMetodepembayaran((String) cBmetodepembayaran.getItemAt(cBmetodepembayaran.getSelectedIndex()));
                     PesananManager.getInstance().getPesanan().setTotalharga(totalharga);
                     Date date = new Date();
-                    SimpleDateFormat s = new SimpleDateFormat("dd-mm-yyyy");
+                    SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
                     String tanggal = s.format(date);
                     PesananManager.getInstance().getPesanan().setTanggalpemesanan(tanggal);
                     DatabaseControl ctrl = new DatabaseControl();                                 
                 
-                    PesananFood pesananFood = new PesananFood();
-                    pesananFood.setTotalharga(totalHargaPesanan);
-                
-                    PesananFoodManager.getInstance().setPesananfood(pesananFood);
                     ArrayList<Driver> listDriver = new ArrayList<>();
                     Driver driver = new Driver();
                     listDriver = ctrl.getAllDriver();
@@ -185,14 +176,15 @@ public class PembayaranFoodScreen implements ActionListener{
                             cek = true;
                             driver = listDriver.get(i);
                             driver.setStatus(StatusDriver.TAKEN);
-                            pesananFood.setStatus(StatusPesanan.DELIVERING);
+                            PesananFoodManager.getInstance().getPesananfood().setStatus(StatusPesanan.DELIVERING);
                             break;
                         }
                     }
                 
                     if(cek){
-                        CustomerManager.getInstance().getCustomer().setSaldoUp(CustomerManager.getInstance().getCustomer().getSaldoUp() - totalharga);
-                        
+                        if(cBmetodepembayaran.getItemAt(cBmetodepembayaran.getSelectedIndex()).equals("Up-Pay")){
+                            CustomerManager.getInstance().getCustomer().setSaldoUp(CustomerManager.getInstance().getCustomer().getSaldoUp() - totalharga);
+                        }
                         ctrl.updateStatusDriver(StatusDriver.TAKEN.name(), driver.getId_driver());
                         
                         PesananManager.getInstance().getPesanan().setDriver(driver);
@@ -200,7 +192,7 @@ public class PembayaranFoodScreen implements ActionListener{
                         ctrl.insertNewPesanan(PesananManager.getInstance().getPesanan());
                         
                         PesananFoodManager.getInstance().getPesananfood().setId_pesanan(ctrl.getPesananTerbaru().getId_pesanan());
-                        ctrl.insertNewPesananFood(pesananFood);                
+                        ctrl.insertNewPesananFood(PesananFoodManager.getInstance().getPesananfood());                
                 
                        JOptionPane.showMessageDialog(null, "Pemesanan Berhasil!!", "Information", JOptionPane.INFORMATION_MESSAGE);
                     }else{
@@ -214,7 +206,7 @@ public class PembayaranFoodScreen implements ActionListener{
             break;
             case "Back":
                 framepembayarangojek.setVisible(false);
-                new MenuGoFood();
+                new UpFood();
             break;
             case "Cancel":
                 framepembayarangojek.setVisible(false);

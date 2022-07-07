@@ -1,7 +1,7 @@
 
 package Model;
 
-public class DetailPesanan {
+public class Keranjang {
     private int id_pesanan;
     private int id_makanan;
     private String namaMenu;

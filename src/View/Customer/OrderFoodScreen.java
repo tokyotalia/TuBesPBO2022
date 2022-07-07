@@ -2,7 +2,7 @@
 package View.Customer;
 
 import Controller.DatabaseControl;
-import Model.DetailPesanan;
+import Model.Keranjang;
 import View.Customer.PembayaranFoodScreen;
 import Model.Food;
 import Model.Restaurant;
@@ -59,10 +59,10 @@ public class OrderFoodScreen implements ActionListener{
             if(listFood.get(i).getRestaurant().getId_restaurant() == restaurant.getId_restaurant()){
                 labelMakanan[counter] = new JLabel(listFood.get(i).getNamamakanan());
                 tfMakanan[counter] = new JTextField();
-                if(y > 350){
-                    y = 50;
-                    x1 += 225;
-                    x2 += 225;
+                if(y < 350){
+                    y += 50;
+                    x1 += 105;
+                    x2 += 105;
                 }
                 labelMakanan[counter].setBounds(x1, y, 100, 30);
                 tfMakanan[counter].setBounds(x2, y, 50, 30);
@@ -96,14 +96,14 @@ public class OrderFoodScreen implements ActionListener{
          String command = ae.getActionCommand();
         switch(command){
             case"Next":
-                ArrayList<DetailPesanan> listDetailPesanan = new ArrayList<>();
-                DetailPesanan detailPesanan = new DetailPesanan();
-                
+                ArrayList<Keranjang> listDetailPesanan = new ArrayList<>();
+                          
                 boolean cek = false;
                 
                 for(int i = 0; i < listFoodRestaurant.size(); i++){
                     if(!tfMakanan[i].getText().equals("")){
                         cek = true;
+                        Keranjang detailPesanan = new Keranjang();
                         detailPesanan.setId_makanan(listFoodRestaurant.get(i).getIdmakanan());
                         detailPesanan.setNamaMenu(listFoodRestaurant.get(i).getNamamakanan());
                         detailPesanan.setHargaSatuan(listFoodRestaurant.get(i).getHargamakanan());
@@ -124,7 +124,7 @@ public class OrderFoodScreen implements ActionListener{
             break;
             case"Cancel":
                 frame.setVisible(false);
-                new MenuGoFood();
+                new UpFood();
             default:
                 break;
         }

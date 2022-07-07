@@ -17,17 +17,17 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class MenuGojek implements ActionListener{
-    private JFrame framemenugojek = new JFrame();
+public class UpJek implements ActionListener{
+    private JFrame frame = new JFrame();
     private JLabel labelalamatjemput, labelalamattujuan, labeljeniskendaraan,labeljudul;
     private JTextField fieldalamatjemput, fieldalamattujuan;
     private JComboBox cBjeniskendaraan;
     private JButton buttonBack, buttonSubmit, buttonGPS;
     
-    public MenuGojek(){
-        framemenugojek.setSize(900,500);
-        framemenugojek.setLocationRelativeTo(null);
-        framemenugojek.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    public UpJek(){
+        frame.setSize(900,500);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         //Label
         labeljudul = new JLabel("OJEK ONLINE");
@@ -68,19 +68,19 @@ public class MenuGojek implements ActionListener{
         buttonGPS.setBounds(600,100,200,50);
         buttonGPS.addActionListener(this);
         
-        framemenugojek.add(labeljudul);
-        framemenugojek.add(labelalamatjemput);
-        framemenugojek.add(labelalamattujuan);
-        framemenugojek.add(labeljeniskendaraan);
-        framemenugojek.add(fieldalamatjemput);
-        framemenugojek.add(fieldalamattujuan);
-        framemenugojek.add(cBjeniskendaraan);
-        framemenugojek.add(buttonBack);
-        framemenugojek.add(buttonSubmit);
-        framemenugojek.add(buttonGPS);
+        frame.add(labeljudul);
+        frame.add(labelalamatjemput);
+        frame.add(labelalamattujuan);
+        frame.add(labeljeniskendaraan);
+        frame.add(fieldalamatjemput);
+        frame.add(fieldalamattujuan);
+        frame.add(cBjeniskendaraan);
+        frame.add(buttonBack);
+        frame.add(buttonSubmit);
+        frame.add(buttonGPS);
        
-        framemenugojek.setLayout(null);
-        framemenugojek.setVisible(true);
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
     
     
@@ -97,7 +97,7 @@ public class MenuGojek implements ActionListener{
                 pesananojek.setJenisKendaraan((String) cBjeniskendaraan.getItemAt(cBjeniskendaraan.getSelectedIndex()));
                 PesananManager.getInstance().setPesanan(pesanan);
                 PesananOjekManager.getInstance().setPesananojek(pesananojek);
-                framemenugojek.setVisible(false);
+                frame.setVisible(false);
                 new PembayaranGojek();
             break;
             case "Back":

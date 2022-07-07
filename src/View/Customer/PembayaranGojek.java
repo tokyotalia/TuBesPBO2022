@@ -2,7 +2,7 @@
 package View.Customer;
 
 import Controller.CustomerManager;
-import View.Customer.MenuGojek;
+import View.Customer.UpJek;
 import Controller.DatabaseControl;
 import Controller.PesananManager;
 import Controller.PesananOjekManager;
@@ -183,7 +183,7 @@ public class PembayaranGojek implements ActionListener{
             break;
             case "Back":
                 framepembayarangojek.setVisible(false);
-                new MenuGojek();
+                new UpJek();
             break;
             case "Cancel":
                 framepembayarangojek.setVisible(false);

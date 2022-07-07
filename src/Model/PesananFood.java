@@ -4,13 +4,13 @@ package Model;
 public class PesananFood extends Pesanan{
     private int ID_PesananFood;
     private String Alamat_Pengantaran;
-    private DetailPesanan detail;
+    private Keranjang detail;
     private StatusPesanan status;
 
     public PesananFood() {
     }
 
-    public PesananFood(int ID_PesananFood, String Alamat_Pengantaran, DetailPesanan detail, StatusPesanan status, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
+    public PesananFood(int ID_PesananFood, String Alamat_Pengantaran, Keranjang detail, StatusPesanan status, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
         super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga);
         this.ID_PesananFood = ID_PesananFood;
         this.Alamat_Pengantaran = Alamat_Pengantaran;
@@ -34,11 +34,11 @@ public class PesananFood extends Pesanan{
         this.Alamat_Pengantaran = Alamat_Pengantaran;
     }
 
-    public DetailPesanan getDetail() {
+    public Keranjang getDetail() {
         return detail;
     }
 
-    public void setDetail(DetailPesanan detail) {
+    public void setDetail(Keranjang detail) {
         this.detail = detail;
     }
 

@@ -3,6 +3,7 @@ package View.Customer;
 
 import Controller.CustomerManager;
 import Controller.DatabaseControl;
+import Controller.PesananFoodManager;
 import Controller.PesananManager;
 import Model.Pesanan;
 import Model.PesananFood;
@@ -17,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class MenuGoFood implements ActionListener{
+public class UpFood implements ActionListener{
     private JFrame frame = new JFrame("Go Food");
     private JLabel restaurantlabel,labeljudul,labeltujuan;
     private JTextField fieldtujuan;
@@ -25,7 +26,7 @@ public class MenuGoFood implements ActionListener{
     private JComboBox cbRestaurant;
     private ArrayList<Restaurant> listRestaurant = new ArrayList<>();
     
-    public MenuGoFood(){
+    public UpFood(){
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -84,6 +85,7 @@ public class MenuGoFood implements ActionListener{
                 PesananFood pesananfood = new PesananFood();
                 pesanan.setCustomer(CustomerManager.getInstance().getCustomer());
                 pesananfood.setAlamat_Pengantaran(fieldtujuan.getText());
+                PesananFoodManager.getInstance().setPesananfood(pesananfood);
                 PesananManager.getInstance().setPesanan(pesanan);
                 
                 Restaurant restaurant = new Restaurant();
