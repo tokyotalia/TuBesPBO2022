@@ -5,6 +5,7 @@
  */
 package View.Admin;
 
+import View.LoginScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -29,7 +30,7 @@ public class AdminScreen extends JFrame implements ActionListener{
         frame.setLocationRelativeTo(null);
         
         labeljudul = new JLabel("Silahkan Pilih ");
-        labeljudul.setBounds(160, 10, 200, 30);
+        labeljudul.setBounds(150, 10, 200, 30);
         
         datadriverbutton = new JButton("Lihat Riwayat Driver");
         datadriverbutton.setBounds(100, 50, 200, 30);
@@ -48,7 +49,19 @@ public class AdminScreen extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+        String command = ae.getActionCommand();
+        switch(command){
+            case"Lihat Riwayat Driver":
+               frame.setVisible(false);
+               new RiwayatDriverScreen();
+            break;
+            case"Logout":
+                frame.setVisible(false);
+                new LoginScreen();
+                break;
+            default:
+                break;
+        }
     }
 }
 
