@@ -8,20 +8,18 @@ public class Pesanan {
     private String tanggalpemesanan;
     private String metodepembayaran;
     private int totalharga;
-    private StatusPesanan statusP;
     
     public Pesanan(){
     
     }
 
-    public Pesanan(int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga, StatusPesanan statusP) {
+    public Pesanan(int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
         this.id_pesanan = id_pesanan;
         this.customer = customer;
         this.driver = driver;
         this.tanggalpemesanan = tanggalpemesanan;
         this.metodepembayaran = metodepembayaran;
         this.totalharga = totalharga;
-        this.statusP = statusP;
     }
 
     public int getId_pesanan() {
@@ -71,13 +69,4 @@ public class Pesanan {
     public void setTotalharga(int totalharga) {
         this.totalharga = totalharga;
     }
-
-    public StatusPesanan getStatus() {
-        return statusP;
-    }
-
-    public void setStatus(StatusPesanan statusP) {
-        this.statusP = statusP;
-    }
-
 }

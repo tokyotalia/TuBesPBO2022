@@ -10,8 +10,8 @@ public class PesananOjek extends Pesanan {
     public PesananOjek(){
     }
 
-    public PesananOjek(int id_pesananojek, String Alamat_Penjemputan, String Alamat_Destinasi, String JenisKendaraan, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga, StatusPesanan statusP) {
-        super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga, statusP);
+    public PesananOjek(int id_pesananojek, String Alamat_Penjemputan, String Alamat_Destinasi, String JenisKendaraan, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
+        super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga);
         this.id_pesananojek = id_pesananojek;
         this.Alamat_Penjemputan = Alamat_Penjemputan;
         this.Alamat_Destinasi = Alamat_Destinasi;

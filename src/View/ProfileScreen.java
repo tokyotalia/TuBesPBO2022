@@ -52,7 +52,7 @@ public class ProfileScreen {
         labelSaldoUp = new JLabel("Saldo Up-Pay");
         labelSaldoUp.setBounds(50, 100, 100, 20);
         
-        labelIsiSaldo = new JLabel("Rp. " + CustomerManager.getInstance().getCustomer().SaldoUp());
+        labelIsiSaldo = new JLabel("Rp. " + CustomerManager.getInstance().getCustomer().getSaldoUp());
         labelIsiSaldo.setBounds(120, 100, 200, 20);
         
         buttonBack = new JButton("Back");
@@ -82,7 +82,7 @@ public class ProfileScreen {
                         DatabaseControl ctrl = new DatabaseControl();
                         ctrl.updateCustomer(CustomerManager.getInstance().getCustomer());
                         
-                        JOptionPane.showMessageDialog(null, "Terima kasih terlah menggunakan aplikasi ini!");
+                        JOptionPane.showMessageDialog(null, "Terima kasih telah menggunakan aplikasi ini!");
                         ProfileScreen.setVisible(false);
                         UserManager.getInstance().setUser(null);
                         new LoginScreen();

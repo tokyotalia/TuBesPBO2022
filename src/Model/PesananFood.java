@@ -5,15 +5,17 @@ public class PesananFood extends Pesanan{
     private int ID_PesananFood;
     private String Alamat_Pengantaran;
     private DetailPesanan detail;
+    private StatusPesanan status;
 
     public PesananFood() {
     }
 
-    public PesananFood(int ID_PesananFood, String Alamat_Pengantaran, DetailPesanan detail, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga, StatusPesanan statusP) {
-        super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga, statusP);
+    public PesananFood(int ID_PesananFood, String Alamat_Pengantaran, DetailPesanan detail, StatusPesanan status, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
+        super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga);
         this.ID_PesananFood = ID_PesananFood;
         this.Alamat_Pengantaran = Alamat_Pengantaran;
         this.detail = detail;
+        this.status = status;
     }
 
     public int getID_PesananFood() {
@@ -39,4 +41,13 @@ public class PesananFood extends Pesanan{
     public void setDetail(DetailPesanan detail) {
         this.detail = detail;
     }
+
+    public StatusPesanan getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPesanan status) {
+        this.status = status;
+    }
+    
 }

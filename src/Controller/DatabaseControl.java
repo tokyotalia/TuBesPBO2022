@@ -78,7 +78,7 @@ public class DatabaseControl {
     
     public static Customers getCustomerByIdCustomer(int idCustomer){
         conn.connect();
-        String query = "SELECT * FROM Customer WHERE ID_Customers = '" + idCustomer + "'";
+        String query = "SELECT * FROM customer WHERE ID_Customers = '" + idCustomer + "'";
         Customers customers = new Customers();
         try{
             Statement stmt = conn.con.createStatement();
@@ -113,7 +113,7 @@ public class DatabaseControl {
     
     public static Driver getDriverByIdDriver(int idDriver){
         conn.connect();
-        String query = "SELECT * FROM Driver WHERE id_Driver = '" + idDriver + "'";
+        String query = "SELECT * FROM driver WHERE ID_Driver = '" + idDriver + "'";
         Driver driver = new Driver();
         try{
             Statement stmt = conn.con.createStatement();
@@ -184,7 +184,7 @@ public class DatabaseControl {
     
     public static boolean insertNewPesananOjek(PesananOjek pesanan){
         conn.connect();
-        String query = "INSERT INTO pesananojek (ID_PesananOjek,ID_Pesanan,Jenis_Kendaraan,Alamat_Penjemputan,Alamat_Destinasi) values (?,?,?,?,?)";
+        String query = "INSERT INTO pesanan_ojek (ID_PesananOjek,ID_Pesanan,Jenis_Kendaraan,Alamat_Penjemputan,Alamat_Destinasi) values (?,?,?,?,?)";
         try{
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
@@ -205,7 +205,7 @@ public class DatabaseControl {
         conn.connect();
         Pesanan pesanan = new PesananOjek();
         PesananOjek pesananojek = new PesananOjek();
-        String query = "SELECT * FROM pesanan ORDER BY id DESC LIMIT 1";
+        String query = "SELECT * FROM pesanan ORDER BY ID_Pesanan DESC LIMIT 1";
         try{
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -213,16 +213,87 @@ public class DatabaseControl {
             DatabaseControl ctrl = new DatabaseControl();
             
             while(rs.next()){
-                pesanan.setId_pesanan(rs.getInt("id"));
-                pesanan.setCustomer(ctrl.getCustomerByIdCustomer(rs.getInt("idCustomer")));
-                pesanan.setDriver(ctrl.getDriverByIdDriver(rs.getInt("idDriver")));
-                pesanan.setTanggalpemesanan(rs.getString("tanggalpemesanan"));
-                pesanan.setMetodepembayaran(rs.getString("metodepembayaran"));
-                pesanan.setTotalharga(rs.getInt("totalharga"));
+                pesanan.setId_pesanan(rs.getInt("ID_Pesanan"));
+                pesanan.setCustomer(ctrl.getCustomerByIdCustomer(rs.getInt("ID_Customer")));
+                pesanan.setDriver(ctrl.getDriverByIdDriver(rs.getInt("ID_Driver")));
+                pesanan.setTanggalpemesanan(rs.getString("Tanggal_Pemesanan"));
+                pesanan.setMetodepembayaran(rs.getString("Metode_Pembayaran"));
+                pesanan.setTotalharga(rs.getInt("Total_Harga"));
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
         return pesanan;
+    }
+    
+    public static ArrayList<Restaurant> getAllRestaurant(){
+        conn.connect();
+        ArrayList<Restaurant> listRestaurant = new ArrayList<>();
+        String query = "SELECT * FROM restaurant";
+        
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Restaurant restaurant = new Restaurant();
+                restaurant.setId_restaurant(rs.getInt("ID_Restaurant"));
+                restaurant.setNamarestaurant(rs.getString("Nama_Restaurant"));
+                restaurant.setAlamatrestaurant(rs.getString("Alamat"));
+                listRestaurant.add(restaurant);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listRestaurant;
+    }
+    
+    public static ArrayList<Food> getAllFood(){
+        conn.connect();
+        ArrayList<Food> listFood = new ArrayList<>();
+        String query = "SELECT * FROM makanan";
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                DatabaseControl ctrl = new DatabaseControl();
+                ArrayList<Restaurant> listRestaurant = new ArrayList<>();
+                listRestaurant = ctrl.getAllRestaurant();
+                Restaurant restaurant = new Restaurant();
+                for(int i = 0; i < listRestaurant.size(); i++){
+                    if(listRestaurant.get(i).getId_restaurant() == rs.getInt("ID_Restoran")){
+                        restaurant = listRestaurant.get(i);
+                    }
+                }
+                
+                Food food = new Food();
+                food.setIdmakanan(rs.getInt("ID_Makanan"));
+                food.setRestaurant(restaurant);
+                food.setNamamakanan(rs.getString("Nama_Makanan"));
+                food.setHargamakanan(rs.getInt("Harga_Makanan"));
+                
+                listFood.add(food);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listFood;
+    }
+    
+    public static boolean insertNewPesananFood(PesananFood pesanan){
+        conn.connect();
+        String query = "INSERT INTO pesanan_food (ID_PesananFood,ID_Pesanan,Alamat_Pengantaran,Status_Pesanan) values (?,?,?,?)";
+        try{
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, 0);
+            stmt.setInt(2, pesanan.getId_pesanan());
+            stmt.setString(3, pesanan.getAlamat_Pengantaran());
+            stmt.setString(4, pesanan.getStatus().name());
+            
+            stmt.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
