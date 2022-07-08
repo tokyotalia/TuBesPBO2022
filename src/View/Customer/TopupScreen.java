@@ -5,11 +5,13 @@
  */
 package View.Customer;
 
+import Controller.CustomerManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -60,7 +62,32 @@ public class TopupScreen implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         switch(command){
-        case "Back":
+            case "Confirm":
+                int jumlah = 0;
+                if(fieldTopUp.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Harap Masukan Jumlah!!", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    jumlah = Integer.parseInt(fieldTopUp.getText());
+                    if(jumlah < 10000){
+                        JOptionPane.showMessageDialog(null, "Minimal Top Up = Rp. 10.000,-", "Error", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        int jawab = JOptionPane.showConfirmDialog(null, "Yakin ingin Mengisi Up-pay sebesar: Rp. " + jumlah + ",- ?");
+                        switch(jawab){
+                            case JOptionPane.YES_OPTION:
+                                CustomerManager.getInstance().getCustomer().setSaldoUp(CustomerManager.getInstance().getCustomer().getSaldoUp() + jumlah);
+                                JOptionPane.showMessageDialog(null, "Saldo Up-pay berhasil ditambahkan!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                                Login.setVisible(false);
+                                new CustomerScreen();
+                                break;
+                            case JOptionPane.NO_OPTION:
+                                break;
+                            case JOptionPane.CANCEL_OPTION:
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "Back":
                 Login.setVisible(false);
                 new CustomerScreen();
                 break;
