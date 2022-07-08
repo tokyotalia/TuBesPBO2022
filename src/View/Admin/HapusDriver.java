@@ -44,8 +44,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Isi Function Hpus Driver
-                new AdminScreen();
+                new DeleteConfirmation();
             }
         });
         

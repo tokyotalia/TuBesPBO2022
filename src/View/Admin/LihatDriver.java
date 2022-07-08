@@ -56,6 +56,14 @@ public class LihatDriver extends JFrame implements ActionListener {
                 new AdminScreen();
             }
         });
+        
+        frame.add(judul);
+        frame.add(labelNama);
+        frame.add(nama);
+        frame.add(find);
+        frame.add(cancel);
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
     
     @Override

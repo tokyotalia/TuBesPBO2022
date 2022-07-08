@@ -50,33 +50,33 @@ public class AdminScreen extends JFrame implements ActionListener{
             }
         });
         
-        logoutbutton = new JButton("Logout");
-        logoutbutton.setBounds(100, 150, 200, 30);
-        logoutbutton.addActionListener(this);
+//        logoutbutton = new JButton("Logout");
+//        logoutbutton.setBounds(100, 150, 200, 30);
+//        logoutbutton.addActionListener(this);
         
         frame.add(labeljudul);
         frame.add(datadriverbutton);
         frame.add(hapusDriverButton);
-        frame.add(logoutbutton);
+//        frame.add(logoutbutton);
         frame.setLayout(null);
         frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String command = ae.getActionCommand();
-        switch(command){
-            case"Lihat Riwayat Driver":
-               frame.setVisible(false);
-               new RiwayatDriverScreen();
-            break;
-            case"Logout":
-                frame.setVisible(false);
-                new LoginScreen();
-                break;
-            default:
-                break;
-        }
+//        String command = ae.getActionCommand();
+//        switch(command){
+//            case"Lihat Riwayat Driver":
+//               frame.setVisible(false);
+//               new RiwayatDriverScreen();
+//            break;
+//            case"Logout":
+//                frame.setVisible(false);
+//                new LoginScreen();
+//                break;
+//            default:
+//                break;
+//        }
     }
 }
 
