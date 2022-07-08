@@ -58,5 +58,12 @@ public class TopupScreen implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        String command = ae.getActionCommand();
+        switch(command){
+        case "Back":
+                Login.setVisible(false);
+                new CustomerScreen();
+                break;
+        }
     }
 }
