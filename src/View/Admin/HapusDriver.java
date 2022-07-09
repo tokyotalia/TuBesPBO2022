@@ -20,8 +20,8 @@ import javax.swing.WindowConstants;
 public class HapusDriver extends JFrame implements ActionListener {
     
     private JFrame frame;
-    private JLabel labelJudul, labelNama;
-    private JTextField nama;
+    private JLabel labelJudul, labelId;
+    private JTextField id;
     private JButton delete, cancel;
     
     public HapusDriver() {
@@ -33,11 +33,11 @@ public class HapusDriver extends JFrame implements ActionListener {
         labelJudul = new JLabel("Hapus Driver");
         labelJudul.setBounds(160, 10, 200, 30);
         
-        labelNama = new JLabel("Nama Driver:");
-        labelNama.setBounds(100, 50, 100, 30);
+        labelId = new JLabel("Nama Driver:");
+        labelId.setBounds(100, 50, 100, 30);
         
-        nama = new JTextField();
-        nama.setBounds(205, 50, 200, 30);
+        id = new JTextField();
+        id.setBounds(205, 50, 200, 30);
         
         delete = new JButton("Delete");
         delete.setBounds(100, 100, 100, 30);
@@ -58,8 +58,8 @@ public class HapusDriver extends JFrame implements ActionListener {
         });
         
         frame.add(labelJudul);
-        frame.add(labelNama);
-        frame.add(nama);
+        frame.add(labelId);
+        frame.add(labelId);
         frame.add(delete);
         frame.add(cancel);
         frame.setLayout(null);
