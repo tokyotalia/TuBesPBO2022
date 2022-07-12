@@ -89,12 +89,12 @@ public class DatabaseControl {
                 listUser = ctrl.getAllUser();
                 
                 for(int i = 0; i < listUser.size(); i++){
-                    if(listUser.get(i).getId_User() == rs.getInt("id_user")){
+                    if(listUser.get(i).getId_User() == rs.getInt("ID_User")){
                         user = listUser.get(i);
                     }
                 }
                 
-                admin.setId_admin(rs.getInt("id_Admin"));
+                admin.setId_admin(rs.getInt("ID_Admin"));
                 
                 admin.setId_User(user.getId_User());
                 admin.setNama(user.getNama());
