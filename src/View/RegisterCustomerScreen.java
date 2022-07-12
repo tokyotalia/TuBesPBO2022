@@ -5,6 +5,9 @@
  */
 package View;
 
+import Controller.DatabaseControl;
+import Model.Customers;
+import Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -85,19 +88,26 @@ public class RegisterCustomerScreen extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        DatabaseControl con = new DatabaseControl();
+        User user = new User();
+        Customers customers = new Customers();
         String command = ae.getActionCommand();
         switch(command){
             case "Confirm":
-                String nama = fieldnama.getText();
-                String username = fieldusername.getText();
-                String password = fieldpassword.getText();
-                String alamat = fieldalamat.getText();
                 
-                if (nama.equals("") || username.equals("") || password.equals("") || alamat.equals("")){
+                if (fieldnama.getText().equals("") || fieldusername.getText().equals("") || fieldpassword.getPassword().equals("") || fieldalamat.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Silahkan diisi dengan lengkap ", "Error", JOptionPane.ERROR_MESSAGE);
                 
                 }else {
-                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Error", JOptionPane.ERROR_MESSAGE);
+                    user.setNama(fieldnama.getText());
+                    user.setUsername(fieldusername.getText());
+                    user.setPassword(new String (fieldpassword.getPassword()));
+                    customers.setAlamat(fieldalamat.getText());
+                    user.setTipe(2);
+                    con.Register(user);
+                    customers.setId_User(con.Register(user));
+                    con.RegisterCustomer(customers);
+                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Information", JOptionPane.INFORMATION_MESSAGE);
                 }   
                 
 //                RegisterCustomer.setVisible(false);

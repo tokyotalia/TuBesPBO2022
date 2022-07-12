@@ -12,6 +12,41 @@ public class DatabaseControl {
     
     static DatabaseHandler conn = new DatabaseHandler();
     
+    public static boolean Register(User user) {
+        conn.connect();
+        String query = "INSERT INTO user(ID_User, Nama, Username, Password, Tipe) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, 0);
+            stmt.setString(2, user.getNama());
+            stmt.setString(3, user.getUsername());
+            stmt.setString(4, user.getPassword());
+            stmt.setInt(5, user.getTipe());
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    } 
+    
+    public static boolean RegisterCustomer(Customers customers){
+        conn.connect();
+        String query = "INSERT INTO customer(ID_Customer, ID_User, Alamat, Saldo_Up_Pay) VALUES(?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, 0);
+            stmt.setInt(2, customers.getId_User());
+            stmt.setString(3, customers.getAlamat());
+            stmt.setInt(4, 0);
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
      public static ArrayList<User>getAllUser(){
         conn.connect();
         ArrayList<User> listUser = new ArrayList<>();

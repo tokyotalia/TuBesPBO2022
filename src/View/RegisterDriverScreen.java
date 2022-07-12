@@ -6,6 +6,8 @@
 package View;
 
 import Controller.DatabaseHandler;
+import Model.Driver;
+import Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -105,6 +107,8 @@ public class RegisterDriverScreen extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        User user = new User();
+        Driver driver = new Driver();
         String command = ae.getActionCommand();
         switch(command){
             case "Confirm":
@@ -120,7 +124,8 @@ public class RegisterDriverScreen extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Silahkan diisi dengan lengkap ", "Error", JOptionPane.ERROR_MESSAGE);
                 
                 }else {
-                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Berhasil Register ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    user.setTipe(3);
                 }   
                 
 //                RegisterDriver.setVisible(false);
