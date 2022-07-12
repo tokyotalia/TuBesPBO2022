@@ -64,7 +64,7 @@ public class UpJek implements ActionListener{
         buttonSubmit.setBounds(200,300,100,50);
         buttonSubmit.addActionListener(this);
         
-        buttonGPS = new JButton("Pilih Lokasi Dengan GPS");
+        buttonGPS = new JButton("Alamat Pribadi");
         buttonGPS.setBounds(600,100,200,50);
         buttonGPS.addActionListener(this);
         
@@ -103,7 +103,7 @@ public class UpJek implements ActionListener{
             case "Back":
                 new CustomerScreen();
             break;
-            case "Pilih Lokasi Dengan GPS":
+            case "Alamat Pribadi":
                 fieldalamatjemput.setText(CustomerManager.getInstance().getCustomer().getAlamat());
             break;
         }

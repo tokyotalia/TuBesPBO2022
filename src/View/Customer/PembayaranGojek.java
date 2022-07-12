@@ -8,6 +8,7 @@ import Controller.PesananManager;
 import Controller.PesananOjekManager;
 import Model.Driver;
 import Model.StatusDriver;
+import Model.StatusPesanan;
 import View.Customer.CustomerScreen;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -151,6 +152,7 @@ public class PembayaranGojek implements ActionListener{
                             cek = true;
                             driver = listDriver.get(i);
                             driver.setStatus(StatusDriver.TAKEN);
+                            PesananOjekManager.getInstance().getPesananojek().setStatus(StatusPesanan.RIDING);
                             break;
                         }
                     }

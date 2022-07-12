@@ -6,16 +6,18 @@ public class PesananOjek extends Pesanan {
     private String Alamat_Penjemputan;
     private String Alamat_Destinasi;
     private String JenisKendaraan;
+    private StatusPesanan status;
     
     public PesananOjek(){
     }
 
-    public PesananOjek(int id_pesananojek, String Alamat_Penjemputan, String Alamat_Destinasi, String JenisKendaraan, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
+    public PesananOjek(int id_pesananojek, String Alamat_Penjemputan, String Alamat_Destinasi, String JenisKendaraan, StatusPesanan status, int id_pesanan, Customers customer, Driver driver, String tanggalpemesanan, String metodepembayaran, int totalharga) {
         super(id_pesanan, customer, driver, tanggalpemesanan, metodepembayaran, totalharga);
         this.id_pesananojek = id_pesananojek;
         this.Alamat_Penjemputan = Alamat_Penjemputan;
         this.Alamat_Destinasi = Alamat_Destinasi;
         this.JenisKendaraan = JenisKendaraan;
+        this.status = status;
     }
 
     public int getId_pesananojek() {
@@ -48,6 +50,14 @@ public class PesananOjek extends Pesanan {
 
     public void setJenisKendaraan(String JenisKendaraan) {
         this.JenisKendaraan = JenisKendaraan;
+    }
+
+    public StatusPesanan getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPesanan status) {
+        this.status = status;
     }
 
 }

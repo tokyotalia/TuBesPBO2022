@@ -37,7 +37,7 @@ public class DatabaseControl {
      
     public static ArrayList<Customers> getAllCustomer(){
         conn.connect();
-        String query = "SELECT * FROM customers";
+        String query = "SELECT * FROM customer";
         ArrayList<Customers> listCustomer = new ArrayList<>();
         
         try{
@@ -51,14 +51,14 @@ public class DatabaseControl {
                 listUser = ctrl.getAllUser();
                 
                 for(int i = 0; i < listUser.size(); i++){
-                    if(listUser.get(i).getId_User() == (rs.getInt("id_user"))){
+                    if(listUser.get(i).getId_User() == (rs.getInt("ID_User"))){
                         user = listUser.get(i);
                     }
                 }
                 
-                customers.setId_customer(rs.getInt("id_Customers"));
-                customers.setAlamat(rs.getString("alamat"));
-                customers.setSaldoUp(rs.getInt("saldo"));
+                customers.setId_customer(rs.getInt("ID_Customer"));
+                customers.setAlamat(rs.getString("Alamat"));
+                customers.setSaldoUp(rs.getInt("Saldo_Up_Pay"));
                 
                 customers.setId_User(user.getId_User());
                 customers.setNama(user.getNama());
@@ -170,9 +170,9 @@ public class DatabaseControl {
                     }
                 }
                 
-                customers.setId_customer(rs.getInt("ID_Customers"));
+                customers.setId_customer(rs.getInt("ID_Customer"));
                 customers.setAlamat(rs.getString("Alamat"));
-                customers.setSaldoUp(rs.getInt("Saldo_Up-Pay"));
+                customers.setSaldoUp(rs.getInt("Saldo_Up_Pay"));
                 
                 customers.setId_User(user.getId_User());
                 customers.setNama(user.getNama());
@@ -243,7 +243,7 @@ public class DatabaseControl {
         try{
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
-            stmt.setInt(2, 2);
+            stmt.setInt(2, pesanan.getCustomer().getId_customer());
             stmt.setInt(3, pesanan.getDriver().getId_driver());
             stmt.setInt(4, pesanan.getTotalharga());
             stmt.setString(5, pesanan.getTanggalpemesanan());
@@ -259,7 +259,7 @@ public class DatabaseControl {
     
     public static boolean insertNewPesananOjek(PesananOjek pesanan){
         conn.connect();
-        String query = "INSERT INTO pesanan_ojek (ID_PesananOjek,ID_Pesanan,Jenis_Kendaraan,Alamat_Penjemputan,Alamat_Destinasi) values (?,?,?,?,?)";
+        String query = "INSERT INTO pesanan_ojek (ID_PesananOjek,ID_Pesanan,Jenis_Kendaraan,Alamat_Penjemputan,Alamat_Destinasi,Status_Pesanan) values (?,?,?,?,?,?)";
         try{
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, 0);
@@ -267,6 +267,7 @@ public class DatabaseControl {
             stmt.setString(3, pesanan.getJenisKendaraan());
             stmt.setString(4, pesanan.getAlamat_Penjemputan());
             stmt.setString(5, pesanan.getAlamat_Destinasi());
+            stmt.setString(6, pesanan.getStatus().name());
             
             stmt.executeUpdate();
             return true;
@@ -278,8 +279,7 @@ public class DatabaseControl {
         
     public static Pesanan getPesananTerbaru(){
         conn.connect();
-        Pesanan pesanan = new PesananOjek();
-        PesananOjek pesananojek = new PesananOjek();
+        Pesanan pesanan = new Pesanan();
         String query = "SELECT * FROM pesanan ORDER BY ID_Pesanan DESC LIMIT 1";
         try{
             Statement stmt = conn.con.createStatement();
@@ -299,6 +299,30 @@ public class DatabaseControl {
             e.printStackTrace();
         }
         return pesanan;
+    }
+    
+    public static ArrayList<Pesanan> getAllPesanan(){
+        ArrayList<Pesanan> listPesanan = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pesanan";
+        DatabaseControl ctrl = new DatabaseControl();
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Pesanan pesanan = new Pesanan();
+                pesanan.setId_pesanan(rs.getInt("ID_Pesanan"));
+                pesanan.setCustomer(ctrl.getCustomerByIdCustomer(rs.getInt("ID_Customer")));
+                pesanan.setDriver(ctrl.getDriverByIdDriver(rs.getInt("ID_Driver")));
+                pesanan.setTanggalpemesanan(rs.getString("Tanggal_Pemesanan"));
+                pesanan.setMetodepembayaran(rs.getString("Metode_Pembayaran"));
+                pesanan.setTotalharga(rs.getInt("Total_Harga"));
+                listPesanan.add(pesanan);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listPesanan;
     }
     
     public static ArrayList<Restaurant> getAllRestaurant(){
@@ -369,6 +393,138 @@ public class DatabaseControl {
         }catch(SQLException e){
             e.printStackTrace();
             return false;
+        }
+    }
+    
+    public static ArrayList<PesananFood> getAllPesananFood(){
+        ArrayList<PesananFood> listPesananFood = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pesanan_food";
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Pesanan pesanan = new Pesanan();
+                DatabaseControl ctrl = new DatabaseControl();
+                ArrayList<Pesanan> listPesanan = new ArrayList<>();
+                listPesanan = ctrl.getAllPesanan();
+                PesananFood pesananFood = new PesananFood();
+                
+                for(int i = 0; i < listPesanan.size(); i++){
+                    if(listPesanan.get(i).getId_pesanan() == rs.getInt("ID_Pesanan")){
+                        pesanan = listPesanan.get(i);
+                    }
+                }
+                
+                pesananFood.setID_PesananFood(rs.getInt("ID_PesananFood"));
+                pesananFood.setId_pesanan(rs.getInt("ID_Pesanan"));
+                pesananFood.setAlamat_Pengantaran(rs.getString("Alamat_Pengantaran"));
+                pesananFood.setStatus(StatusPesanan.valueOf(rs.getString("Status_Pesanan")));
+                
+                pesananFood.setId_pesanan(pesanan.getId_pesanan());
+                pesananFood.setCustomer(pesanan.getCustomer());
+                pesananFood.setDriver(pesanan.getDriver());
+                pesananFood.setTanggalpemesanan(pesanan.getTanggalpemesanan());
+                pesananFood.setMetodepembayaran(pesanan.getMetodepembayaran());
+                pesananFood.setTotalharga(pesanan.getTotalharga());
+                
+                listPesananFood.add(pesananFood);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listPesananFood;
+    }
+    
+    public static ArrayList<PesananOjek> getAllPesananOjek(){
+        ArrayList<PesananOjek> listPesananOjek = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pesanan_ojek";
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                PesananOjek pesananOjek = new PesananOjek();
+                Pesanan pesanan = new Pesanan();
+                DatabaseControl ctrl = new DatabaseControl();
+                ArrayList<Pesanan> listPesanan = new ArrayList<>();
+                listPesanan = ctrl.getAllPesanan();
+                
+                for(int i = 0; i < listPesanan.size(); i++){
+                    if(listPesanan.get(i).getId_pesanan() == rs.getInt("id_pesanan")){
+                        pesanan = listPesanan.get(i);
+                    }
+                }
+                pesananOjek.setId_pesananojek(rs.getInt("ID_PesananOjek"));
+                pesananOjek.setAlamat_Penjemputan(rs.getString("Alamat_Penjemputan"));
+                pesananOjek.setAlamat_Destinasi(rs.getString("Alamat_Destinasi"));
+                pesananOjek.setJenisKendaraan(rs.getString("Jenis_Kendaraan"));
+                pesananOjek.setStatus(StatusPesanan.valueOf(rs.getString("Status_Pesanan")));
+                
+                pesananOjek.setId_pesanan(pesanan.getId_pesanan());
+                pesananOjek.setCustomer(pesanan.getCustomer());
+                pesananOjek.setDriver(pesanan.getDriver());
+                pesananOjek.setTanggalpemesanan(pesanan.getTanggalpemesanan());
+                pesananOjek.setMetodepembayaran(pesanan.getMetodepembayaran());
+                pesananOjek.setTotalharga(pesanan.getTotalharga());
+  
+                listPesananOjek.add(pesananOjek);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listPesananOjek;
+    }
+    
+    public static boolean updateStatusPesananFood(String status, int idPesananFood){
+        conn.connect();
+        String query = "UPDATE pesanan_food SET Status_Pesanan = '" + status + "' WHERE ID_PesananFood = " + idPesananFood;
+        try{
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+        
+    public static boolean updateStatusPesananOjek(String status, int idPesananOjek){
+        conn.connect();
+        String query = "UPDATE pesanan_ojek SET Status_Pesanan = '" + status + "' WHERE ID_PesananOjek = " + idPesananOjek;
+        try{
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean updateCustomer(Customers customer) {
+        conn.connect();
+        String query = "UPDATE customer SET Saldo_Up_Pay=" + customer.getSaldoUp() + " WHERE ID_Customer=" + customer.getId_customer();
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    public static boolean updateDriver(Driver driver) {
+        conn.connect();
+        String query = "UPDATE driver SET Saldo_Driver=" + driver.getSaldoUp() + ", Pendapatan=" + driver.getPendapatan() + " WHERE ID_Driver=" + driver.getId_driver();
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
         }
     }
 }

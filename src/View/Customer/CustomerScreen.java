@@ -31,11 +31,11 @@ public class CustomerScreen extends JFrame implements ActionListener{
         labeljudul = new JLabel("Silahkan Pilih ");
         labeljudul.setBounds(150, 10, 200, 30);
         
-        gojekbutton = new JButton("GoJek");
+        gojekbutton = new JButton("UpJek");
         gojekbutton.setBounds(100, 50, 200, 30);
         gojekbutton.addActionListener(this);
         
-        gofoodbutton = new JButton("GoFood");
+        gofoodbutton = new JButton("UpFood");
         gofoodbutton.setBounds(100, 100, 200, 30);
         gofoodbutton.addActionListener(this);
         
@@ -43,20 +43,15 @@ public class CustomerScreen extends JFrame implements ActionListener{
         topupbutton.setBounds(100, 150, 200, 30);
         topupbutton.addActionListener(this);
         
-        userprofilebutton = new JButton("UserProfile");
+        userprofilebutton = new JButton("User Profile");
         userprofilebutton.setBounds(100, 200, 200, 30);
-        userprofilebutton.addActionListener(this);
-        
-        historybutton = new JButton("History");
-        historybutton.setBounds(100, 250, 200, 30);
-        historybutton.addActionListener(this);
+        userprofilebutton.addActionListener(this);       
         
         frame.add(labeljudul);
         frame.add(gojekbutton);
         frame.add(gofoodbutton);
         frame.add(topupbutton);
         frame.add(userprofilebutton);
-        frame.add(historybutton);
         frame.setLayout(null);
         frame.setVisible(true);
     }
@@ -65,11 +60,11 @@ public class CustomerScreen extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         switch(command){
-            case"GoJek":
+            case"UpJek":
                 frame.setVisible(false);
                 new UpJek();
                 break;
-            case"GoFood":
+            case"UpFood":
                 frame.setVisible(false);
                 new UpFood();
                 break;
@@ -77,13 +72,9 @@ public class CustomerScreen extends JFrame implements ActionListener{
                 frame.setVisible(false);
                 new TopupScreen();
                 break;
-            case"UserProfile":
+            case"User Profile":
                 frame.setVisible(false);
                 new ProfileScreen();
-                break;
-            case"History":
-                frame.setVisible(false);
-                new MenuHistory();
                 break;
             default:
                 break;
