@@ -20,21 +20,21 @@ import javax.swing.WindowConstants;
  */
 public class LihatDriver extends JFrame implements ActionListener {
     private JFrame frame;
-    private JLabel judul, labelNama;
+    private JLabel judul, labelId;
     private JTextField nama;
     private JButton find, cancel;
     
     public LihatDriver(){
-        frame = new JFrame("Delete Driver");
+        frame = new JFrame("Lihat History Driver");
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         
-        judul = new JLabel("Lihat Driver");
+        judul = new JLabel("Lihat History Driver");
         judul.setBounds(160, 10, 200, 30);
         
-        labelNama = new JLabel("Nama Driver:");
-        labelNama.setBounds(100, 50, 100, 30);
+        labelId = new JLabel("ID Driver:");
+        labelId.setBounds(100, 50, 100, 30);
         
         nama = new JTextField();
         nama.setBounds(205, 50, 200, 30);
@@ -58,7 +58,7 @@ public class LihatDriver extends JFrame implements ActionListener {
         });
         
         frame.add(judul);
-        frame.add(labelNama);
+        frame.add(labelId);
         frame.add(nama);
         frame.add(find);
         frame.add(cancel);
