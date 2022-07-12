@@ -30,6 +30,25 @@ public class DatabaseControl {
         }
     } 
     
+        public static User getIdUserTerbaru(){
+        conn.connect();
+        User user = new User();
+        String query = "SELECT ID_User FROM user ORDER BY ID_User DESC LIMIT 1";
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DatabaseControl ctrl = new DatabaseControl();
+            
+            while(rs.next()){
+                user.setId_User(rs.getInt("ID_User"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+    
     public static boolean RegisterCustomer(Customers customers){
         conn.connect();
         String query = "INSERT INTO customer(ID_Customer, ID_User, Alamat, Saldo_Up_Pay) VALUES(?,?,?,?)";
@@ -39,6 +58,26 @@ public class DatabaseControl {
             stmt.setInt(2, customers.getId_User());
             stmt.setString(3, customers.getAlamat());
             stmt.setInt(4, 0);
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    public static boolean RegisterDriver(Driver driver){
+        conn.connect();
+        String query = "INSERT INTO driver(ID_Driver, ID_User, Jenis_Kendaraan, Plat_Nomor, Saldo_Driver, Pendapatan, Status) VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, 0);
+            stmt.setInt(2, driver.getId_User());
+            stmt.setString(3, driver.getJeniskendaraan());
+            stmt.setString(4, driver.getPlatnomor());
+            stmt.setInt(5, 0);
+            stmt.setInt(6, 0);
+            stmt.setString(7, StatusDriver.AVAILABLE.name());
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {

@@ -105,13 +105,12 @@ public class RegisterCustomerScreen extends JFrame implements ActionListener{
                     customers.setAlamat(fieldalamat.getText());
                     user.setTipe(2);
                     con.Register(user);
-                    customers.setId_User(con.Register(user));
+                    customers.setId_User(con.getIdUserTerbaru().getId_User());
                     con.RegisterCustomer(customers);
                     JOptionPane.showMessageDialog(null, "Berhasil Register ", "Information", JOptionPane.INFORMATION_MESSAGE);
-                }   
-                
-//                RegisterCustomer.setVisible(false);
-//                new LoginScreen();
+                }                
+                RegisterCustomer.setVisible(false);
+                new LoginScreen();
             break;
             case "Back":
                 RegisterCustomer.setVisible(false);
