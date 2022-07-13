@@ -113,6 +113,8 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
                     case JOptionPane.YES_OPTION:
                         if(Integer.parseInt(fieldnominal.getText()) < DriverManager.getInstance().getDrivers().getSaldoUp()){
                             DriverManager.getInstance().getDrivers().setSaldoUp(DriverManager.getInstance().getDrivers().getSaldoUp() - Integer.parseInt(fieldnominal.getText()));
+                            String pembayaran = JOptionPane.showInputDialog(null, "Silakan input Metode Pembayaran");
+                            JOptionPane.showMessageDialog(null, "Kamu meng-inputkan: " + pembayaran);
                             JOptionPane.showMessageDialog(null, "Penarikan Berhasil!!", "Information", JOptionPane.INFORMATION_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(null, "Saldo Up-Pay Kurang!!", "Error", JOptionPane.ERROR_MESSAGE);

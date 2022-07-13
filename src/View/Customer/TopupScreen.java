@@ -74,6 +74,8 @@ public class TopupScreen implements ActionListener{
                         int jawab = JOptionPane.showConfirmDialog(null, "Yakin ingin Mengisi Up-pay sebesar: Rp. " + jumlah + ",- ?");
                         switch(jawab){
                             case JOptionPane.YES_OPTION:
+                                String pembayaran = JOptionPane.showInputDialog(null, "Silakan input Metode Pembayaran");
+                                JOptionPane.showMessageDialog(null, "Kamu meng-inputkan: " + pembayaran);
                                 CustomerManager.getInstance().getCustomer().setSaldoUp(CustomerManager.getInstance().getCustomer().getSaldoUp() + jumlah);
                                 JOptionPane.showMessageDialog(null, "Saldo Up-pay berhasil ditambahkan!!", "Information", JOptionPane.INFORMATION_MESSAGE);
                                 Login.setVisible(false);
