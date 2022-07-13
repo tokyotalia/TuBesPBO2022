@@ -44,6 +44,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
                 new DeleteConfirmation(Integer.parseInt(id.getText()));
             }
         });
@@ -53,6 +54,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
                 new AdminScreen();
             }
         });

@@ -5,6 +5,7 @@
  */
 package View.Admin;
 
+import Controller.LogoutAdmin;
 import View.LoginScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,11 +33,12 @@ public class AdminScreen extends JFrame implements ActionListener{
         labeljudul = new JLabel("Silahkan Pilih ");
         labeljudul.setBounds(165, 10, 200, 30);
         
-        datadriverbutton = new JButton("Lihat History Driver");
+        datadriverbutton = new JButton("Lihat Driver");
         datadriverbutton.setBounds(100, 50, 200, 30);
         datadriverbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
                 new LihatDriver();
             }
         });
@@ -46,6 +48,7 @@ public class AdminScreen extends JFrame implements ActionListener{
         hapusDriverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
                 new HapusDriver();
             }
         });
@@ -55,7 +58,9 @@ public class AdminScreen extends JFrame implements ActionListener{
         logoutbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginScreen();
+                LogoutAdmin logout = new LogoutAdmin();
+                logout.logout();
+                frame.setVisible(false);
             }
         });
         
@@ -69,23 +74,7 @@ public class AdminScreen extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-//        String command = ae.getActionCommand();
-//        switch(command){
-//            case"Lihat Riwayat Driver":
-//               frame.setVisible(false);
-//               new RiwayatDriverScreen();
-//            break;
-//            case"Logout":
-//                frame.setVisible(false);
-//                new LoginScreen();
-//                break;
-//            default:
-//                break;
-//        }
-    }
-    
-    public static void main(String[] args) {
-        new AdminScreen();
+        
     }
 }
 

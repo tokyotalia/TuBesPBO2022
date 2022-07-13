@@ -52,7 +52,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
         labelisiplatno = new JLabel(DriverManager.getInstance().getDrivers().getPlatnomor());
         labelisiplatno.setBounds(150,150,100,30);
         
-        labelsaldo = new JLabel("Saldo Ovo");
+        labelsaldo = new JLabel("Saldo Up-Pay");
         labelsaldo.setBounds(45,200,100,30);
         
         labelisisaldo = new JLabel("Rp. " + Integer.toString(DriverManager.getInstance().getDrivers().getSaldoUp()) + ",-");
@@ -70,7 +70,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
         fieldnominal = new JTextField("");
         fieldnominal.setBounds(150,300,100,30);
         
-        tariksaldobutton = new JButton("TarikSaldo");
+        tariksaldobutton = new JButton("Tarik Saldo");
         tariksaldobutton.addActionListener(this);
         tariksaldobutton.setBounds(70,350,100,30);
         
@@ -78,7 +78,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
         backbutton.addActionListener(this);
         backbutton.setBounds(180,350,100,30);
         
-        lihatriwayatbutton = new JButton("LihatRiwayat");
+        lihatriwayatbutton = new JButton("Lihat Riwayat");
         lihatriwayatbutton.addActionListener(this);
         lihatriwayatbutton.setBounds(70,400,200,30);
       
@@ -107,7 +107,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         switch(command){
-            case"TarikSaldo":
+            case"Tarik Saldo":
                 int jawab = JOptionPane.showConfirmDialog(null, "Yakin ingin menarik Rp. " + fieldnominal.getText() + ",-?");
                 switch(jawab){
                     case JOptionPane.YES_OPTION:
@@ -126,7 +126,6 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
                     case JOptionPane.CANCEL_OPTION:
                         break;
                 }
-                
                 frame.setVisible(false);
                 new DriverScreen();
             break;
@@ -134,7 +133,7 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
                 frame.setVisible(false);
                 new DriverScreen();
                 break;
-            case"LihatRiwayat":
+            case"Lihat Riwayat":
                 new DriverHistoryScreen();
             default:
                 break;

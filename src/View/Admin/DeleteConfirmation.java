@@ -42,6 +42,7 @@ public class DeleteConfirmation extends JFrame implements ActionListener {
                 con.DeleteDriver(id);
                 con.DeleteUserDriver(idUser);
                 new HapusDriver();
+                frame.setVisible(false);
             }
         });
         
@@ -50,7 +51,7 @@ public class DeleteConfirmation extends JFrame implements ActionListener {
         no.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                frame.setVisible(false);
                 new HapusDriver();
             }
         });

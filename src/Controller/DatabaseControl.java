@@ -656,11 +656,10 @@ public class DatabaseControl {
         String query = "SELECT ID_User FROM driver WHERE ID_Driver='" + idDriver + "'";
         try {
             Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while(rs.next()) {
-//                id = rs.getInt("ID_User");
-//            }
-            id = stmt.executeQuery(query).getInt(query);
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                id = rs.getInt("ID_User");
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Gagal Dihapus");
             e.printStackTrace();
