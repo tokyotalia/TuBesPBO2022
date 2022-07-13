@@ -101,6 +101,8 @@ public class LihatDriver extends JFrame implements ActionListener {
                         new AdminScreen();
                     }
                 });
+                
+                
         
         frame.add(judul);
         frame.add(labelId);
