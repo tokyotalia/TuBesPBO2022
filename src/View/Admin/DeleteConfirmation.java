@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.WindowConstants;
+import Controller.DatabaseControl;
 /**
  *
  * @author Wilson
@@ -21,7 +22,8 @@ public class DeleteConfirmation extends JFrame implements ActionListener {
     private JLabel alert;
     private JButton yes, no;
     
-    public DeleteConfirmation() {
+    
+    public DeleteConfirmation(int id) {
         frame = new JFrame("Delete Confirmation");
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -35,7 +37,10 @@ public class DeleteConfirmation extends JFrame implements ActionListener {
         yes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Function Hapus
+                DatabaseControl con = new DatabaseControl();
+                int idUser = con.SelectUserDriver(id);
+                con.DeleteDriver(id);
+                con.DeleteUserDriver(idUser);
                 new HapusDriver();
             }
         });
@@ -45,6 +50,7 @@ public class DeleteConfirmation extends JFrame implements ActionListener {
         no.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 new HapusDriver();
             }
         });

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class DatabaseControl {
     
@@ -621,6 +622,61 @@ public class DatabaseControl {
             stmt.executeUpdate(query);
             return (true);
         } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    public static boolean DeleteDriver(int idDriver) {
+        conn.connect();
+        String query = "SET foreign_key_checks = 0";
+        String query2 = "DELETE FROM driver WHERE ID_Driver='" + idDriver + "'";
+        String query3 = "SET foreign_key_checks = 1";
+        try {
+            Statement stmt = conn.con.createStatement();
+            int i = stmt.executeUpdate(query);
+            int j = stmt.executeUpdate(query2);
+            int k = stmt.executeUpdate(query3);
+            if (j == 0) {
+                JOptionPane.showMessageDialog(null, "Gagal Dihapus");
+            } else {
+                JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
+            }
+            return (true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal Dihapus");
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    public static int SelectUserDriver(int idDriver) {
+        conn.connect();
+        int id = 0;
+        String query = "SELECT ID_User FROM driver WHERE ID_Driver='" + idDriver + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+//            ResultSet rs = stmt.executeQuery(query);
+//            while(rs.next()) {
+//                id = rs.getInt("ID_User");
+//            }
+            id = stmt.executeQuery(query).getInt(query);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal Dihapus");
+            e.printStackTrace();
+        }
+        return id;
+    }
+    
+    public static boolean DeleteUserDriver(int id) {
+        conn.connect();
+        String query = "DELETE FROM user WHERE ID_User='" + id + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            int i = stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal Dihapus");
             e.printStackTrace();
             return (false);
         }

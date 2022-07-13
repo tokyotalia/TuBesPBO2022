@@ -33,7 +33,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         labelJudul = new JLabel("Hapus Driver");
         labelJudul.setBounds(160, 10, 200, 30);
         
-        labelId = new JLabel("Nama Driver:");
+        labelId = new JLabel("ID Driver:");
         labelId.setBounds(100, 50, 100, 30);
         
         id = new JTextField();
@@ -44,7 +44,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DeleteConfirmation();
+                new DeleteConfirmation(Integer.parseInt(id.getText()));
             }
         });
         
@@ -59,7 +59,7 @@ public class HapusDriver extends JFrame implements ActionListener {
         
         frame.add(labelJudul);
         frame.add(labelId);
-        frame.add(labelId);
+        frame.add(id);
         frame.add(delete);
         frame.add(cancel);
         frame.setLayout(null);
