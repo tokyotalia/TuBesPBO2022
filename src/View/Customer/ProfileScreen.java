@@ -7,6 +7,7 @@ package View.Customer;
 
 import Controller.CustomerManager;
 import Controller.DatabaseControl;
+import Controller.LogoutCustomer;
 import Controller.UserManager;
 import View.LoginScreen;
 import java.awt.event.ActionEvent;
@@ -80,13 +81,9 @@ public class ProfileScreen {
                 int jawab = JOptionPane.showConfirmDialog(null, "Yakin ingin Logout?");
                 switch(jawab){
                     case JOptionPane.YES_OPTION:
-                        DatabaseControl ctrl = new DatabaseControl();
-                        ctrl.updateCustomer(CustomerManager.getInstance().getCustomer());
-                        
-                        JOptionPane.showMessageDialog(null, "Terima kasih telah menggunakan aplikasi ini!");
-                        ProfileScreen.setVisible(false);
-                        UserManager.getInstance().setUser(null);
-                        new LoginScreen();
+                    LogoutCustomer logout = new LogoutCustomer();
+                    logout.logout();
+                    ProfileScreen.setVisible(false);
                 }
             }
         });

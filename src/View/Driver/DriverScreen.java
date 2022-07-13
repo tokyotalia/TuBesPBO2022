@@ -4,6 +4,7 @@ package View.Driver;
 import Controller.CustomerManager;
 import Controller.DatabaseControl;
 import Controller.DriverManager;
+import Controller.LogoutDriver;
 import Controller.PesananOjekManager;
 import Model.Pesanan;
 import Model.PesananFood;
@@ -148,9 +149,9 @@ public class DriverScreen extends JFrame implements ActionListener{
                 new DriverProfileScreen();
                 break;
             case"LogOut":
-                ctrl.updateDriver(DriverManager.getInstance().getDrivers());
+                LogoutDriver logout = new LogoutDriver();
+                logout.logout();
                 frame.setVisible(false);
-                new LoginScreen();
                 break;
             default:
                 break;
