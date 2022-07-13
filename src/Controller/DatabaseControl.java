@@ -399,6 +399,30 @@ public class DatabaseControl {
         return listPesanan;
     }
     
+    public static ArrayList<Pesanan> getAllPesananByDriverId(int idDriver){
+        ArrayList<Pesanan> listPesanan = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pesanan WHERE ID_Driver = '" + idDriver + "'";
+        DatabaseControl ctrl = new DatabaseControl();
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Pesanan pesanan = new Pesanan();
+                pesanan.setId_pesanan(rs.getInt("ID_Pesanan"));
+                pesanan.setCustomer(ctrl.getCustomerByIdCustomer(rs.getInt("ID_Customer")));
+                pesanan.setDriver(ctrl.getDriverByIdDriver(rs.getInt("ID_Driver")));
+                pesanan.setTanggalpemesanan(rs.getString("Tanggal_Pemesanan"));
+                pesanan.setMetodepembayaran(rs.getString("Metode_Pembayaran"));
+                pesanan.setTotalharga(rs.getInt("Total_Harga"));
+                listPesanan.add(pesanan);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listPesanan;
+    }
+    
     public static ArrayList<Restaurant> getAllRestaurant(){
         conn.connect();
         ArrayList<Restaurant> listRestaurant = new ArrayList<>();

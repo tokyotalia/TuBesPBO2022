@@ -25,14 +25,14 @@ public class AdminScreen extends JFrame implements ActionListener{
 
     public AdminScreen() {
         frame = new JFrame("Admin");
-        frame.setSize(400, 200);
+        frame.setSize(400, 250);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         
         labeljudul = new JLabel("Silahkan Pilih ");
-        labeljudul.setBounds(150, 10, 200, 30);
+        labeljudul.setBounds(165, 10, 200, 30);
         
-        datadriverbutton = new JButton("Lihat Driver");
+        datadriverbutton = new JButton("Lihat History Driver");
         datadriverbutton.setBounds(100, 50, 200, 30);
         datadriverbutton.addActionListener(new ActionListener() {
             @Override
@@ -50,14 +50,19 @@ public class AdminScreen extends JFrame implements ActionListener{
             }
         });
         
-//        logoutbutton = new JButton("Logout");
-//        logoutbutton.setBounds(100, 150, 200, 30);
-//        logoutbutton.addActionListener(this);
+        logoutbutton = new JButton("Logout");
+        logoutbutton.setBounds(100, 150, 200, 30);
+        logoutbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginScreen();
+            }
+        });
         
         frame.add(labeljudul);
         frame.add(datadriverbutton);
         frame.add(hapusDriverButton);
-//        frame.add(logoutbutton);
+        frame.add(logoutbutton);
         frame.setLayout(null);
         frame.setVisible(true);
     }
@@ -77,6 +82,10 @@ public class AdminScreen extends JFrame implements ActionListener{
 //            default:
 //                break;
 //        }
+    }
+    
+    public static void main(String[] args) {
+        new AdminScreen();
     }
 }
 
