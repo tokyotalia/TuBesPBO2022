@@ -117,7 +117,7 @@ public class RegisterDriverScreen extends JFrame implements ActionListener {
             case "Confirm":
 
                 String Jeniskendaraan = "Motor";
-                if (RBMobil.isShowing()) {
+                if (RBMobil.isSelected()) {
                     Jeniskendaraan = "Mobil";
                 }
                 if (fieldnama.getText().equals("") || fieldusername.getText().equals("") || fieldpassword.getPassword().equals("") || fieldplatnomor.getText().equals("")) {

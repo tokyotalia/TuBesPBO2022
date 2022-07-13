@@ -133,7 +133,6 @@ public class DriverProfileScreen extends JFrame implements ActionListener{
                 new DriverScreen();
                 break;
             case"LihatRiwayat":
-                frame.setVisible(false);
                 new DriverHistoryScreen();
             default:
                 break;

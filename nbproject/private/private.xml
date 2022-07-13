@@ -2,35 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/DatabaseHandler.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/DatabaseControl.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/PesananManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Admin/AdminScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/UpFood.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/TopupScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/LoginScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/PesananFoodManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/RegisterScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/RegisterCustomerScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Main/Main.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/ProfileScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/PesananOjekManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/CustomerScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/OrderFoodScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/CustomerManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Model/Keranjang.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/PembayaranGojek.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Admin/LihatDriver.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/UserManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Customer/PembayaranFoodScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Model/PesananOjek.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/DriverManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Admin/HapusDriver.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Controller/AdminManager.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/RegisterDriverScreen.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/View/Admin/DeleteConfirmation.java</file>
-            <file>file:/D:/Wilson/Cat%20Matkul/PBO/TubesPBOSP/TuBesPBO2022/src/Model/PesananFood.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

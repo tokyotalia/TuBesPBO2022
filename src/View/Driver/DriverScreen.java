@@ -69,7 +69,6 @@ public class DriverScreen extends JFrame implements ActionListener{
                         if(listPesanan.get(i).getId_pesanan() == listPesananOjek.get(j).getId_pesanan()&& listPesananOjek.get(j).getStatus()==StatusPesanan.RIDING){
                             cekOjek = true;
                             pesananOjek = listPesananOjek.get(j);
-                            System.out.println(listPesananOjek.get(j).getId_pesananojek());
                         }
                     }
                 }
