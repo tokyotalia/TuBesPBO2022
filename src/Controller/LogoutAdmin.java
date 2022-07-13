@@ -5,11 +5,9 @@ import Model.Logout;
 import View.LoginScreen;
 import javax.swing.JOptionPane;
 
-public class LogoutDriver implements Logout{
+public class LogoutAdmin implements Logout {
     @Override
     public void logout(){
-        DatabaseControl ctrl = new DatabaseControl();
-        ctrl.updateDriver(DriverManager.getInstance().getDrivers());
         JOptionPane.showMessageDialog(null, "Terima kasih telah menggunakan aplikasi ini!");
         UserManager.getInstance().setUser(null);
         new LoginScreen();
